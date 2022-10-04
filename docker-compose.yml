@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx
+    container_name: nginx_php
+    working_dir: /var/www/html
+    ports:
+      - "80:80"
+    depends_on:
+      - drupal
+    volumes:
+      - ./drupal:/var/www/html:rw
+      - ./nginx/conf.d:/etc/nginx/conf.d:rw
+        
+
+    restart: always
+
+  drupal:
+    build: ./php
+    container_name: php5.3
+    ports:
+      - "9000:9000"
+
+    depends_on:
+      - mysql
+      - mariadb
+      - memcached
+    volumes:
+      - ./drupal:/var/www/html:rw
+      - ./php/php.ini:/usr/local/etc/php/php.ini:rw
+
+
+    restart: always
+  mysql:
+    image: mysql:5.7.39
+    container_name: mysql
+
+    environment:
+      - MYSQL_DATABASE=drupal
+      - MYSQL_ROOT_PASSWORD=drupal
+    volumes:
+      - type: bind
+        source:  ./mysql/my.cnf
+        target: /etc/mysql/my.cnf
+      - ./mysql/data:/var/lib/mysql
+    ports:
+      - "3308:3306"
+  mariadb:
+    image: mariadb
+    container_name: mariadb
+    restart: always
+    environment:
+      - MYSQL_DATABASE=drupal
+      - MYSQL_ROOT_PASSWORD=drupal
+    volumes:
+      - type: bind
+        source:  ./mariadb/my.cnf
+        target: /etc/mariadb/my.cnf
+      - ./mariadb/data:/var/lib/mysql
+    restart: always
+  memcached:
+    image: memcached:latest
+    container_name: memcached
