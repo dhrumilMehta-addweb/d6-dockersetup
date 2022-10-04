@@ -1,5 +1,5 @@
 #!/bin/sh
-docker compose up -d
+docker-compose up -d
 sudo chown -R $USER:www-data ./drupal
 
 cd drupal  && git clone https://github.com/d6lts/drupal.git .
