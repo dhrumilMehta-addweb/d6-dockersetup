@@ -76,3 +76,17 @@ services:
        memlock:
          soft: -1
          hard: -1
+  solr:
+    image: solr:latest
+    container_name: solr
+    ports:
+      - "8983:8983"
+    volumes:
+      - ./solr_data:/opt/solr/server/solr/mycores
+    entrypoint:
+      - docker-entrypoint.sh
+      - solr-precreate
+      - core_name
+    volumes_from: 
+      - drupal
+    restart: always
