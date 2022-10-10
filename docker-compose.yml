@@ -18,7 +18,7 @@ services:
 
   drupal:
     build: ./php
-    container_name: php5.3
+    container_name: php7.1
     ports:
       - "9000:9000"
 
@@ -62,20 +62,20 @@ services:
   memcached:
     image: memcached:latest
     container_name: memcached
-  elasticsearch5:
-    image: elasticsearch:5.6.15
-    container_name: elastic5
-    ports:
-       - '9200:9200'
-    environment:
-       - bootstrap.memory_lock=true
-       - discovery.type=single-node
-       - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
-       - cluster.routing.allocation.disk.threshold_enabled=false
-    ulimits:
-       memlock:
-         soft: -1
-         hard: -1
+  # elasticsearch5:
+  #   image: elasticsearch:5.6.15
+  #   container_name: elastic5
+  #   ports:
+  #      - '9200:9200'
+  #   environment:
+  #      - bootstrap.memory_lock=true
+  #      - discovery.type=single-node
+  #      - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
+  #      - cluster.routing.allocation.disk.threshold_enabled=false
+  #   ulimits:
+  #      memlock:
+  #        soft: -1
+  #        hard: -1
   solr:
     image: solr:latest
     container_name: solr

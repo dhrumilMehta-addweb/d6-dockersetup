@@ -186,15 +186,17 @@ RUN set -eux \
     && true 
 
 
+# Install drush
+RUN curl -Lo /usr/local/bin/drush https://github.com/drush-ops/drush/releases/download/8.3.0/drush.phar && \
+chmod a+x /usr/local/bin/drush
 
+#install composer 
+RUN curl -sSL https://getcomposer.org/download/1.9.1/composer.phar -o /usr/bin/composer && \
+chmod +x /usr/bin/composer && composer --version
 
 WORKDIR /var/www/html
 
-# # https://www.drupal.org/node/3060/release?api_version%5B%5D=87
-# ENV DRUPAL_VERSION 6.38
 
-# RUN curl -fSL "http://ftp.drupal.org/files/projects/drupal-${DRUPAL_VERSION}.tar.gz" -o drupal.tar.gz \
-#     && tar -xz --strip-components=1 -f drupal.tar.gz \
-#     && rm drupal.tar.gz \
-#     && chown -R www-data:www-data sites
+
+
 
