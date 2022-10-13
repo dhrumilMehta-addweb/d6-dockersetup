@@ -18,7 +18,7 @@ services:
 
   drupal:
     build: ./php
-    container_name: php7.1
+    container_name: php5.6
     ports:
       - "9000:9000"
 
@@ -62,6 +62,8 @@ services:
   memcached:
     image: memcached:latest
     container_name: memcached
+    ports:
+      - "11211:11211"
   solr:
     image: solr
     container_name: solr
