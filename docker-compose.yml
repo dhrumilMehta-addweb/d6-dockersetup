@@ -17,7 +17,7 @@ services:
     restart: always
 
   drupal:
-    build: ./php
+    image: jaddweb/d6-7.1:latest
     container_name: php5.6
     ports:
       - "9000:9000"
