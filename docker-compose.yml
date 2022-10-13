@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.3'
 
 services:
   nginx:
@@ -69,6 +69,8 @@ services:
     container_name: solr
     ports:
       - "8983:8983"
-    volumes_from: 
-      - drupal
+    volumes:
+      - data:/var/solr
     restart: always
+volumes:
+  data:
