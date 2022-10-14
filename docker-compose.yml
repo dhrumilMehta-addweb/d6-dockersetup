@@ -21,6 +21,11 @@ services:
     container_name: php7.1
     ports:
       - "9000:9000"
+  drupal5.3:
+    image: jaddweb/d6-5.3
+    container_name: php5.3
+    ports:
+      - "8000:9000"
 
     depends_on:
       - mysql
