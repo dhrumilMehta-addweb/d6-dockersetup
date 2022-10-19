@@ -20,7 +20,9 @@ RUN apt-get update && apt-get install -y  --force-yes \
 
 COPY php.ini /etc/php5/apache2/
 
+COPY --from=composer:2.2.3 /usr/bin/composer /usr/bin/composer
 # Install drush
 RUN curl -Lo /usr/local/bin/drush https://github.com/drush-ops/drush/releases/download/8.3.0/drush.phar && \
 chmod a+x /usr/local/bin/drush
+
 WORKDIR /var/www/html
