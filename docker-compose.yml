@@ -10,8 +10,8 @@ services:
     volumes:
       - ./drupal:/var/www/html/
       - ./php/php.ini:/usr/local/etc/php/php.ini:rw
-      - ./apache2/conf:/etc/apache2/sites-enabled
-      - ./apache2/logs:/var/log/apache2
+      - ./apache2/conf:/etc/apache2/sites-enabled/
+      - ./apache2/logs:/var/log/apache2/
     restart: always
     ports:
       - 80:80
